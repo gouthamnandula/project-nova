@@ -13,7 +13,8 @@ export const createTask = async (
       });
     }
 
-    const { projectId } = req.params;
+    const { projectId } = req.params as { projectId: string };
+
     const {
       title,
       description,
@@ -102,7 +103,7 @@ export const getProjectTasks = async (
       });
     }
 
-    const { projectId } = req.params;
+    const { projectId } = req.params as { projectId: string };
 
     const project = await prisma.project.findFirst({
       where: {
@@ -158,7 +159,7 @@ export const getTaskById = async (
       });
     }
 
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
 
     const task = await prisma.task.findFirst({
       where: {
@@ -207,7 +208,8 @@ export const updateTask = async (
       });
     }
 
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
+
     const {
       title,
       description,
@@ -296,7 +298,7 @@ export const deleteTask = async (
       });
     }
 
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
 
     const existingTask = await prisma.task.findFirst({
       where: {

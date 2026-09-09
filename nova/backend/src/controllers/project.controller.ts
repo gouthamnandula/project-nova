@@ -92,7 +92,7 @@ export const getProjectById = async (
       });
     }
 
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
 
     const project = await prisma.project.findFirst({
       where: {
@@ -130,7 +130,7 @@ export const updateProject = async (
       });
     }
 
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
     const { name, description } = req.body;
 
     const existingProject = await prisma.project.findFirst({
@@ -180,7 +180,7 @@ export const deleteProject = async (
             });
         }
 
-        const { id } = req.params;
+        const { id } = req.params as {id : string};
 
         const existingProject = await prisma.project.findFirst({
             where: {
@@ -224,7 +224,7 @@ export const addProjectMember = async (
       });
     }
 
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
     const { email } = req.body;
 
     if (!email) {
@@ -305,7 +305,7 @@ export const getProjectMembers = async (
       });
     }
 
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
 
     const project = await prisma.project.findFirst({
       where: {
@@ -361,7 +361,10 @@ export const removeProjectMember = async (
       });
     }
 
-    const { id, userId } = req.params;
+    const { id, userId } = req.params as {
+      id: string;
+      userId: string;
+    };
 
     const project = await prisma.project.findFirst({
       where: {
@@ -429,7 +432,7 @@ export const getProjectStats = async (
       });
     }
 
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
 
     const project = await prisma.project.findFirst({
       where: {
